@@ -18,10 +18,13 @@
       flex: 1 1 100%;
       overflow-y: scroll;
       padding: 0.5em;
+      align-items: center;
+      gap: 1em;
     }
     &-item {
       display: inline;
       color: rgba($color: #1c75e8, $alpha: 1);
+      font-size: 3em;
       &:hover {
         cursor: pointer;
         text-decoration: underline;

@@ -1,11 +1,11 @@
-<div 
+<div
   [ngClass]="
     viewType == 'HandsetPortrait'
       ? 'countries-container-handset-p'
       : 'countries-container'
   "
 >
-  <div 
+  <div
     class="list"
     [ngStyle]="{
       width: selectedCountry && !viewType ? '50%' : '100%',
@@ -18,42 +18,43 @@
     ></app-input-box>
     <div class="list-scrollable">
       <span *ngFor="let country of countries; let i = index">
-        <h2 class="list-item" (click)="selectCountry(i)">
+        <span class="list-item" (click)="selectCountry(i)">
           {{ country.name.common }}
-        </h2>
+        </span>
       </span>
     </div>
   </div>
   <div *ngIf="selectedCountry" class="details">
-    <img 
+    <img
       class="details-flag"
-      [src]="selectedCountry.flags.svg" 
+      [src]="selectedCountry.flags.svg"
       alt="country flag image"
     />
     <div class="details-info">
-      <h2>Official Name - {{ selectedCountry.name.official }}</h2>
-      <h2>
-        Capital City - {{
-          selectedCountry.capital[0] 
+      <span>Official Name - {{ selectedCountry.name.official }}</span>
+      <span>
+        Capital City -
+        {{
+          selectedCountry.capital[0]
             ? selectedCountry.capital[0]
-            : 'No data found'
+            : "No data found"
         }}
-      </h2>
-      <h2>
-        Location - {{ selectedCountry.region 
+      </span>
+      <span>
+        Location - {{ selectedCountry.region
         }}<span *ngIf="selectedCountry.subregion"
           >, {{ selectedCountry.subregion }}</span
         >
-      </h2>
-      <h2>
-        Languages - 
+      </span>
+      <span>
+        Languages -
         {{
           selectedCountry.languages[0]
             ? (selectedCountry.languages | join)
-            : 'No data found'
+            : "No data found"
         }}
-      </h2>
-      <h2>Population - {{ selectedCountry.population | number }}</h2>
+      </span>
+      <span>Population - {{ selectedCountry.population | number }}</span>
     </div>
   </div>
 </div>

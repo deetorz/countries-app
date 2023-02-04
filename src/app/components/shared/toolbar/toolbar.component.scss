@@ -2,6 +2,10 @@
   height: 3em;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  gap: 1em;
   align-self: center;
+  &-link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
