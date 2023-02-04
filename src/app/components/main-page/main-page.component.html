@@ -1,0 +1,59 @@
+<div 
+  [ngClass]="
+    viewType == 'HandsetPortrait'
+      ? 'countries-container-handset-p'
+      : 'countries-container'
+  "
+>
+  <div 
+    class="list"
+    [ngStyle]="{
+      width: selectedCountry && !viewType ? '50%' : '100%',
+      height: viewType == 'HandsetPortrait' && selectedCountry ? '50%' : '100%'
+    }"
+  >
+    <app-input-box
+      [selectedCountry]="selectedCountry"
+      (searchInput)="inputChange($event)"
+    ></app-input-box>
+    <div class="list-scrollable">
+      <span *ngFor="let country of countries; let i = index">
+        <h2 class="list-item" (click)="selectCountry(i)">
+          {{ country.name.common }}
+        </h2>
+      </span>
+    </div>
+  </div>
+  <div *ngIf="selectedCountry" class="details">
+    <img 
+      class="details-flag"
+      [src]="selectedCountry.flags.svg" 
+      alt="country flag image"
+    />
+    <div class="details-info">
+      <h2>Official Name - {{ selectedCountry.name.official }}</h2>
+      <h2>
+        Capital City - {{
+          selectedCountry.capital[0] 
+            ? selectedCountry.capital[0]
+            : 'No data found'
+        }}
+      </h2>
+      <h2>
+        Location - {{ selectedCountry.region 
+        }}<span *ngIf="selectedCountry.subregion"
+          >, {{ selectedCountry.subregion }}</span
+        >
+      </h2>
+      <h2>
+        Languages - 
+        {{
+          selectedCountry.languages[0]
+            ? (selectedCountry.languages | join)
+            : 'No data found'
+        }}
+      </h2>
+      <h2>Population - {{ selectedCountry.population | number }}</h2>
+    </div>
+  </div>
+</div>
